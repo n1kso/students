@@ -9,31 +9,32 @@ import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.DaoException;
 
 @Entity
-public class Group {
+public class Groupa {
 
     @Id(autoincrement = true)
     private long id;
     private String caption;
-    private String Faculty;
+    private long facultyId;
 
-    @ToMany(referencedJoinProperty = "groupId")
+    @ToMany(referencedJoinProperty = "groupaId")
     private List<Student> students;
+    /** Used to resolve relations */
     /** Used to resolve relations */
     @Generated(hash = 2040040024)
     private transient DaoSession daoSession;
     /** Used for active entity operations. */
-    @Generated(hash = 1591306109)
-    private transient GroupDao myDao;
+    @Generated(hash = 2047761952)
+    private transient GroupaDao myDao;
 
-    @Generated(hash = 771398784)
-    public Group(long id, String caption, String Faculty) {
+    @Generated(hash = 1090024002)
+    public Groupa(long id, String caption, long facultyId) {
         this.id = id;
         this.caption = caption;
-        this.Faculty = Faculty;
+        this.facultyId = facultyId;
     }
 
-    @Generated(hash = 117982048)
-    public Group() {
+    @Generated(hash = 951378057)
+    public Groupa() {
     }
 
     public long getId() {
@@ -52,19 +53,19 @@ public class Group {
         this.caption = caption;
     }
 
-    public String getFaculty() {
-        return this.Faculty;
+    public long getFacultyId() {
+        return this.facultyId;
     }
 
-    public void setFaculty(String Faculty) {
-        this.Faculty = Faculty;
+    public void setFacultyId(long facultyId) {
+        this.facultyId = facultyId;
     }
 
     /**
      * To-many relationship, resolved on first access (and after reset).
      * Changes to to-many relations are not persisted, make changes to the target entity.
      */
-    @Generated(hash = 20851861)
+    @Generated(hash = 1343226253)
     public List<Student> getStudents() {
         if (students == null) {
             final DaoSession daoSession = this.daoSession;
@@ -72,7 +73,7 @@ public class Group {
                 throw new DaoException("Entity is detached from DAO context");
             }
             StudentDao targetDao = daoSession.getStudentDao();
-            List<Student> studentsNew = targetDao._queryGroup_Students(id);
+            List<Student> studentsNew = targetDao._queryGroupa_Students(id);
             synchronized (this) {
                 if (students == null) {
                     students = studentsNew;
@@ -125,10 +126,12 @@ public class Group {
     }
 
     /** called by internal mechanisms, do not call yourself. */
-    @Generated(hash = 1333602095)
+    @Generated(hash = 1871409401)
     public void __setDaoSession(DaoSession daoSession) {
         this.daoSession = daoSession;
-        myDao = daoSession != null ? daoSession.getGroupDao() : null;
+        myDao = daoSession != null ? daoSession.getGroupaDao() : null;
     }
+ 
+
 
 }

@@ -15,16 +15,16 @@ public class Student {
     private String surname;
     private String patronymic;
     private Date birthDate;
-    private long groupId;
-    @Generated(hash = 577026451)
+    private long groupaId;
+    @Generated(hash = 230802912)
     public Student(long id, String name, String surname, String patronymic,
-            Date birthDate, long groupId) {
+            Date birthDate, long groupaId) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.patronymic = patronymic;
         this.birthDate = birthDate;
-        this.groupId = groupId;
+        this.groupaId = groupaId;
     }
     @Generated(hash = 1556870573)
     public Student() {
@@ -59,12 +59,15 @@ public class Student {
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
-    public long getGroupId() {
-        return this.groupId;
+    public long getGroupaId() {
+        return this.groupaId;
     }
-    public void setGroupId(long groupId) {
-        this.groupId = groupId;
+    public void setGroupaId(long groupaId) {
+        this.groupaId = groupaId;
     }
+   
+
+    
 
 
 }

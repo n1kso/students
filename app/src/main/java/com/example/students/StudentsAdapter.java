@@ -75,7 +75,7 @@ public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.Studen
         holder.familyName.setText(student.getName());
         holder.patronymic.setText(student.getPatronymic());
         holder.birthDate.setText(student.getBirthDate().toString());
-        holder.group.setText(String.valueOf(student.getGroupId()));
+        holder.group.setText(String.valueOf(student.getGroupaId()));
     }
 
     @Override
