@@ -19,7 +19,7 @@ public class App extends Application {
         super.onCreate();
 
         // regular SQLite database
-        ExampleOpenHelper helper = new ExampleOpenHelper(this, "students-db");
+        ExampleOpenHelper helper = new ExampleOpenHelper(this, "students-db1");
         Database db = helper.getWritableDb();
 
         // encrypted SQLCipher database
@@ -48,39 +48,58 @@ public class App extends Application {
             db.execSQL("INSERT INTO " + FacultyDao.TABLENAME + " (" +
                     FacultyDao.Properties.Id.columnName + ", " +
                     FacultyDao.Properties.Name.columnName +
-                    ") VALUES(10, 'ЕНФ')");
+                    ") VALUES(1, 'Экономический')");
             db.execSQL("INSERT INTO " + FacultyDao.TABLENAME + " (" +
                     FacultyDao.Properties.Id.columnName + ", " +
                     FacultyDao.Properties.Name.columnName +
-                    ") VALUES(11, 'МФ')");
+                    ") VALUES(2, 'Энергетический')");
             db.execSQL("INSERT INTO " + FacultyDao.TABLENAME + " (" +
                     FacultyDao.Properties.Id.columnName + ", " +
                     FacultyDao.Properties.Name.columnName +
-                    ") VALUES(12, 'ЭиА')");
+                    ") VALUES(3, 'Исторический')");
 
-//            db.execSQL("INSERT INTO " + GroupaDao.TABLENAME + " (" +
-//                    GroupaDao.Properties.Id.columnName + ", " +
-//                    GroupaDao.Properties.Caption.columnName + ", " +
-//                    GroupaDao.Properties.FacultyId.columnName +
-//                    ") VALUES(3, 'ИПО', 4)");
-//            db.execSQL("INSERT INTO " + GroupaDao.TABLENAME + " (" +
-//                    GroupaDao.Properties.Id.columnName + ", " +
-//                    GroupaDao.Properties.Caption.columnName + ", " +
-//                    GroupaDao.Properties.FacultyId.columnName +
-//                    ") VALUES(4, 'ИСиТ', 4)");
-//            db.execSQL("INSERT INTO " + GroupaDao.TABLENAME + " (" +
-//                    GroupaDao.Properties.Id.columnName + ", " +
-//                    GroupaDao.Properties.Caption.columnName + ", " +
-//                    GroupaDao.Properties.FacultyId.columnName +
-//                    ") VALUES(6, 'ПМ', 5)");
-//            db.execSQL("INSERT INTO " + StudentDao.TABLENAME + " (" +
-//                    StudentDao.Properties.Id.columnName + ", " +
-//                    StudentDao.Properties.Name.columnName + ", " +
-//                    StudentDao.Properties.Surname.columnName + ", " +
-//                    StudentDao.Properties.Patronymic.columnName + ", " +
-//                    StudentDao.Properties.BirthDate.columnName + ", " +
-//                    StudentDao.Properties.GroupaId.columnName +
-//                    ") VALUES(2, 'Василий', 'Фролов', 'Олегович', '1996-01-01 10:00:00', 3)");
+            db.execSQL("INSERT INTO " + GroupaDao.TABLENAME + " (" +
+                    GroupaDao.Properties.Id.columnName + ", " +
+                    GroupaDao.Properties.Caption.columnName + ", " +
+                    GroupaDao.Properties.FacultyId.columnName +
+                    ") VALUES(1, 'ИПО', 4)");
+            db.execSQL("INSERT INTO " + GroupaDao.TABLENAME + " (" +
+                    GroupaDao.Properties.Id.columnName + ", " +
+                    GroupaDao.Properties.Caption.columnName + ", " +
+                    GroupaDao.Properties.FacultyId.columnName +
+                    ") VALUES(2, 'ИСиТ', 4)");
+            db.execSQL("INSERT INTO " + GroupaDao.TABLENAME + " (" +
+                    GroupaDao.Properties.Id.columnName + ", " +
+                    GroupaDao.Properties.Caption.columnName + ", " +
+                    GroupaDao.Properties.FacultyId.columnName +
+                    ") VALUES(3, 'ПМ', 5)");
+            db.execSQL("INSERT INTO " + StudentDao.TABLENAME + " (" +
+                    StudentDao.Properties.Id.columnName + ", " +
+                    StudentDao.Properties.Name.columnName + ", " +
+                    StudentDao.Properties.Surname.columnName + ", " +
+                    StudentDao.Properties.Patronymic.columnName + ", " +
+                    StudentDao.Properties.BirthDate.columnName + ", " +
+                    StudentDao.Properties.GroupaId.columnName +
+//                    ") VALUES(1, 'Василий', 'Фролов', 'Олегович', '1996-01-01 10:00:00', 1)");
+                    ") VALUES(1, 'Василий', 'Фролов', 'Олегович', '1996-01-01', 1)");
+            db.execSQL("INSERT INTO " + StudentDao.TABLENAME + " (" +
+                    StudentDao.Properties.Id.columnName + ", " +
+                    StudentDao.Properties.Name.columnName + ", " +
+                    StudentDao.Properties.Surname.columnName + ", " +
+                    StudentDao.Properties.Patronymic.columnName + ", " +
+                    StudentDao.Properties.BirthDate.columnName + ", " +
+                    StudentDao.Properties.GroupaId.columnName +
+//                    ") VALUES(1, 'Василий', 'Фролов', 'Олегович', '1996-01-01 10:00:00', 1)");
+                    ") VALUES(2, 'Анатолий', 'Ужаков', 'Васильевич', '1986-06-12', 2)");
+            db.execSQL("INSERT INTO " + StudentDao.TABLENAME + " (" +
+                    StudentDao.Properties.Id.columnName + ", " +
+                    StudentDao.Properties.Name.columnName + ", " +
+                    StudentDao.Properties.Surname.columnName + ", " +
+                    StudentDao.Properties.Patronymic.columnName + ", " +
+                    StudentDao.Properties.BirthDate.columnName + ", " +
+                    StudentDao.Properties.GroupaId.columnName +
+//                    ") VALUES(1, 'Василий', 'Фролов', 'Олегович', '1996-01-01 10:00:00', 1)");
+                    ") VALUES(1, 'Анна', 'Федотова', 'Сергеевна', '1996-04-22', 3)");
 
         }
     }

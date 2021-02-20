@@ -3,4 +3,7 @@
     <string name="add">Создать</string>
     <string name="enter_new_student">Добавить нового студента</string>
     <string name="click_to_remove">Нажать для удаление</string>
+    <string name="groupa">Группа</string>
+    <string name="faculty">Факультет</string>
+    <string name="student">Студент</string>
 </resources>

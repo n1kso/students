@@ -33,9 +33,16 @@ public class FacultyActivity extends AppCompatActivity {
 
         DaoSession daoSession = ((App)getApplication()).getDaoSession();
         facultyDao = daoSession.getFacultyDao();
+//        facultyDao.detachAll();
 
         facultyQuery = facultyDao.queryBuilder().build();
         updateFaculties();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
     }
 
     private void updateFaculties() {
