@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.students.Entity.DaoSession;
-import com.example.students.Entity.Faculty;
-import com.example.students.Entity.FacultyDao;
 import com.example.students.Entity.Student;
 import com.example.students.Entity.StudentDao;
 
@@ -35,8 +33,6 @@ public class StudentActivity extends AppCompatActivity {
 
         DaoSession daoSession = ((App)getApplication()).getDaoSession();
         studentDao = daoSession.getStudentDao();
-//        facultyDao.detachAll();
-
         studentQuery = studentDao.queryBuilder().build();
         updateFaculties();
     }

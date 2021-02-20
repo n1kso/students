@@ -8,7 +8,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.students.Entity.Groupa;
+import com.example.students.Entity.GroupaDao;
 import com.example.students.Entity.Student;
+
+import org.greenrobot.greendao.query.Query;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +21,8 @@ public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.Studen
 
     private StudentClickListener clickListener;
     private List<Student> dataset;
+    private Query<Groupa> groupaQuery;
+    private GroupaDao groupaDoa;
 
     public interface StudentClickListener {
         void onStudentClick(int position);
