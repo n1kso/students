@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.students.Entity.Groupa;
+import com.example.students.Faculty.FacultyActivity;
+import com.example.students.Groupa.GroupaActivity;
+import com.example.students.Student.StudentActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 

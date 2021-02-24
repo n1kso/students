@@ -99,7 +99,7 @@ public class App extends Application {
                     StudentDao.Properties.BirthDate.columnName + ", " +
                     StudentDao.Properties.GroupaId.columnName +
 //                    ") VALUES(1, 'Василий', 'Фролов', 'Олегович', '1996-01-01 10:00:00', 1)");
-                    ") VALUES(1, 'Анна', 'Федотова', 'Сергеевна', '1996-04-22', 3)");
+                    ") VALUES(3, 'Анна', 'Федотова', 'Сергеевна', '1996-04-22', 3)");
 
         }
     }

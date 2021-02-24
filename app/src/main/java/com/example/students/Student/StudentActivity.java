@@ -1,17 +1,17 @@
-package com.example.students;
+package com.example.students.Student;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.students.App;
 import com.example.students.Entity.DaoSession;
 import com.example.students.Entity.Student;
 import com.example.students.Entity.StudentDao;
+import com.example.students.R;
 
 import org.greenrobot.greendao.query.Query;
 
@@ -34,7 +34,7 @@ public class StudentActivity extends AppCompatActivity {
         DaoSession daoSession = ((App)getApplication()).getDaoSession();
         studentDao = daoSession.getStudentDao();
         studentQuery = studentDao.queryBuilder().build();
-        updateFaculties();
+        updateStudents();
     }
 
     @Override
@@ -43,7 +43,7 @@ public class StudentActivity extends AppCompatActivity {
 
     }
 
-    private void updateFaculties() {
+    private void updateStudents() {
         List<Student> students = studentQuery.list();
         studentsAdapter.setStudents(students);
     }
@@ -71,7 +71,7 @@ public class StudentActivity extends AppCompatActivity {
 //            studentDao.deleteByKey(studentId);
 //            Log.d("DaoExample", "Deleted note, ID: " + studentId);
 
-            updateFaculties();
+            updateStudents();
         }
     };
 

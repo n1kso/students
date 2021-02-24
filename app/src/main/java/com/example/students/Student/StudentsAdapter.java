@@ -1,4 +1,4 @@
-package com.example.students;
+package com.example.students.Student;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.students.Entity.Groupa;
 import com.example.students.Entity.GroupaDao;
 import com.example.students.Entity.Student;
+import com.example.students.R;
 
 import org.greenrobot.greendao.query.Query;
 

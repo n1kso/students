@@ -1,4 +1,4 @@
-package com.example.students;
+package com.example.students.Groupa;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.students.Entity.Groupa;
+import com.example.students.R;
 
 import java.util.ArrayList;
 import java.util.List;

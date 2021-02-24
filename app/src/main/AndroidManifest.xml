@@ -17,13 +17,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StudentActivity"
+        <activity android:name=".Student.StudentActivity"
             android:label="StudentActivity">
         </activity>
-        <activity android:name=".FacultyActivity"
+        <activity android:name=".Faculty.FacultyActivity"
             android:label="FacultyActivity">
         </activity>
-        <activity android:name=".GroupaActivity"
+        <activity android:name=".Groupa.GroupaActivity"
             android:label="GroupaActivity">
         </activity>
     </application>

@@ -1,4 +1,4 @@
-package com.example.students;
+package com.example.students.Groupa;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -9,9 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.students.App;
 import com.example.students.Entity.DaoSession;
 import com.example.students.Entity.Groupa;
 import com.example.students.Entity.GroupaDao;
+import com.example.students.R;
 
 import org.greenrobot.greendao.query.Query;
 
