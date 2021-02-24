@@ -66,7 +66,7 @@ public class GroupaAdapter extends RecyclerView.Adapter<GroupaAdapter.GroupaView
     public void onBindViewHolder(@NonNull GroupaViewHolder holder, int position) {
         Groupa groupa = dataset.get(position);
         holder.caption.setText(groupa.getCaption());
-        holder.faculty.setText(String.valueOf(groupa.getFacultyId()));
+        holder.faculty.setText(groupa.getFaculty().getName());
     }
 
     @Override

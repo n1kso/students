@@ -26,6 +26,9 @@
         <activity android:name=".Groupa.GroupaActivity"
             android:label="GroupaActivity">
         </activity>
+        <activity android:name=".Student.AddStudentActivity"
+            android:label="AddStudentActivity">
+        </activity>
     </application>
 
 </manifest>

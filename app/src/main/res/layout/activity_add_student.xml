@@ -15,14 +15,14 @@
         android:id="@+id/NewStudentSurname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/newStudentPatronymic"
+        android:hint="@string/newStudentSurname"
         android:inputType="text"
         android:autofillHints="username" />
     <EditText
         android:id="@+id/NewStudentPatronymic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/newStudentSurname"
+        android:hint="@string/newStudentPatronymic"
         android:inputType="text"
         android:autofillHints="username" />
 
@@ -35,7 +35,14 @@
         android:inputType="date"
         android:autofillHints="date"/>
     <Spinner
+        android:id="@+id/groupaSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/InsertStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add"
+        />
 
 </LinearLayout>

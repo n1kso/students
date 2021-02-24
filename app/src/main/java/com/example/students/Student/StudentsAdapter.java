@@ -22,8 +22,6 @@ public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.Studen
 
     private StudentClickListener clickListener;
     private List<Student> dataset;
-    private Query<Groupa> groupaQuery;
-    private GroupaDao groupaDoa;
 
     public interface StudentClickListener {
         void onStudentClick(int position);
@@ -79,10 +77,10 @@ public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.Studen
     public void onBindViewHolder(@NonNull StudentsViewHolder holder, int position) {
         Student student = dataset.get(position);
         holder.name.setText(student.getName());
-        holder.familyName.setText(student.getName());
+        holder.familyName.setText(student.getSurname());
         holder.patronymic.setText(student.getPatronymic());
         holder.birthDate.setText(student.getBirthDate().toString());
-        holder.group.setText(String.valueOf(student.getGroupaId()));
+        holder.group.setText(student.getGroupa().getCaption());
     }
 
     @Override

@@ -7,6 +7,8 @@ import org.greenrobot.greendao.annotation.ToMany;
 import java.util.List;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.DaoException;
+import org.greenrobot.greendao.annotation.ToOne;
+import org.greenrobot.greendao.annotation.NotNull;
 
 @Entity
 public class Groupa {
@@ -18,6 +20,10 @@ public class Groupa {
 
     @ToMany(referencedJoinProperty = "groupaId")
     private List<Student> students;
+
+    @ToOne(joinProperty = "facultyId")
+    private Faculty faculty;
+    
     /** Used to resolve relations */
     /** Used to resolve relations */
     @Generated(hash = 2040040024)
@@ -25,6 +31,8 @@ public class Groupa {
     /** Used for active entity operations. */
     @Generated(hash = 2047761952)
     private transient GroupaDao myDao;
+    @Generated(hash = 2040065736)
+    private transient Long faculty__resolvedKey;
 
     @Generated(hash = 1090024002)
     public Groupa(long id, String caption, long facultyId) {
@@ -123,6 +131,39 @@ public class Groupa {
             throw new DaoException("Entity is detached from DAO context");
         }
         myDao.update(this);
+    }
+
+    /** To-one relationship, resolved on first access. */
+    @Generated(hash = 6671084)
+    public Faculty getFaculty() {
+        long __key = this.facultyId;
+        if (faculty__resolvedKey == null || !faculty__resolvedKey.equals(__key)) {
+            final DaoSession daoSession = this.daoSession;
+            if (daoSession == null) {
+                throw new DaoException("Entity is detached from DAO context");
+            }
+            FacultyDao targetDao = daoSession.getFacultyDao();
+            Faculty facultyNew = targetDao.load(__key);
+            synchronized (this) {
+                faculty = facultyNew;
+                faculty__resolvedKey = __key;
+            }
+        }
+        return faculty;
+    }
+
+    /** called by internal mechanisms, do not call yourself. */
+    @Generated(hash = 586566501)
+    public void setFaculty(@NotNull Faculty faculty) {
+        if (faculty == null) {
+            throw new DaoException(
+                    "To-one property 'facultyId' has not-null constraint; cannot set to-one to null");
+        }
+        synchronized (this) {
+            this.faculty = faculty;
+            facultyId = faculty.getId();
+            faculty__resolvedKey = facultyId;
+        }
     }
 
     /** called by internal mechanisms, do not call yourself. */

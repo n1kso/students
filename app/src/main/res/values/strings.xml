@@ -10,4 +10,5 @@
     <string name="newStudentSurname">Введите фамилию</string>
     <string name="newStudentPatronymic">Введите отчество</string>
     <string name="newStudentBirthDate">Введите дату рождения</string>
+    <string name="wrongDateFormat">Неверный формат даты</string>
 </resources>

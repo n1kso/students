@@ -1,7 +1,9 @@
 package com.example.students.Student;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,7 +21,7 @@ import java.util.List;
 
 public class StudentActivity extends AppCompatActivity {
 
-    private View addFacultyButton;
+    private Button addFacultyButton;
     private StudentDao studentDao;
     private Query<Student> studentQuery;
     private StudentsAdapter studentsAdapter;
@@ -56,8 +58,13 @@ public class StudentActivity extends AppCompatActivity {
         studentsAdapter = new StudentsAdapter(studentClickListener);
         recyclerView.setAdapter(studentsAdapter);
 
-        addFacultyButton = findViewById(R.id.buttonAddSudent);
-        addFacultyButton.setEnabled(false);
+        addFacultyButton = findViewById(R.id.buttonAddStudent);
+        addFacultyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(StudentActivity.this, AddStudentActivity.class));
+            }
+        });
 
 
     }
@@ -75,7 +82,6 @@ public class StudentActivity extends AppCompatActivity {
         }
     };
 
-    public void onAddButtonClick(View view) {
 
-    }
+
 }
