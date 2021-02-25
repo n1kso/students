@@ -3,6 +3,7 @@ package com.example.students.Student;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,6 +35,8 @@ public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.Studen
         public TextView patronymic;
         public TextView birthDate;
         public TextView group;
+        public ImageButton editButton;
+        public ImageButton deleteButton;
 
         public StudentsViewHolder(View itemView, final StudentClickListener clickListener) {
             super(itemView);
@@ -42,6 +45,8 @@ public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.Studen
             patronymic = itemView.findViewById(R.id.textViewStudentPatronymic);
             birthDate = itemView.findViewById(R.id.textViewStudentBirthDate);
             group = itemView.findViewById(R.id.textViewStudentGroup);
+            editButton = itemView.findViewById(R.id.editStudent);
+            deleteButton = itemView.findViewById(R.id.deleteStudent);
 
             itemView.setOnClickListener(view -> {
                 if (clickListener != null) {
@@ -69,7 +74,7 @@ public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.Studen
     @Override
     public StudentsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_stundent, parent, false);
+                .inflate(R.layout.item_student_new, parent, false);
         return new StudentsViewHolder(view, clickListener);
     }
 

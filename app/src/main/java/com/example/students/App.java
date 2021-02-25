@@ -62,17 +62,17 @@ public class App extends Application {
                     GroupaDao.Properties.Id.columnName + ", " +
                     GroupaDao.Properties.Caption.columnName + ", " +
                     GroupaDao.Properties.FacultyId.columnName +
-                    ") VALUES(1, 'ИПО', 4)");
+                    ") VALUES(1, 'ИПО', 1)");
             db.execSQL("INSERT INTO " + GroupaDao.TABLENAME + " (" +
                     GroupaDao.Properties.Id.columnName + ", " +
                     GroupaDao.Properties.Caption.columnName + ", " +
                     GroupaDao.Properties.FacultyId.columnName +
-                    ") VALUES(2, 'ИСиТ', 4)");
+                    ") VALUES(2, 'ИСиТ', 2)");
             db.execSQL("INSERT INTO " + GroupaDao.TABLENAME + " (" +
                     GroupaDao.Properties.Id.columnName + ", " +
                     GroupaDao.Properties.Caption.columnName + ", " +
                     GroupaDao.Properties.FacultyId.columnName +
-                    ") VALUES(3, 'ПМ', 5)");
+                    ") VALUES(3, 'ПМ', 3)");
             db.execSQL("INSERT INTO " + StudentDao.TABLENAME + " (" +
                     StudentDao.Properties.Id.columnName + ", " +
                     StudentDao.Properties.Name.columnName + ", " +

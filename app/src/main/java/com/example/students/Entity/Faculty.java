@@ -11,7 +11,7 @@ import org.greenrobot.greendao.DaoException;
 @Entity
 public class Faculty {
     @Id(autoincrement = true)
-    private long id;
+    private Long id;
     private String name;
 
     @ToMany(referencedJoinProperty = "facultyId")
@@ -23,8 +23,8 @@ public class Faculty {
     @Generated(hash = 1268625480)
     private transient FacultyDao myDao;
 
-    @Generated(hash = 1672369145)
-    public Faculty(long id, String name) {
+    @Generated(hash = 355737088)
+    public Faculty(Long id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -33,11 +33,11 @@ public class Faculty {
     public Faculty() {
     }
 
-    public long getId() {
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

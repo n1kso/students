@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (v.getId() == R.id.facultyButton) {
             i = new Intent(MainActivity.this, FacultyActivity.class);
-            startActivity(i);
         } else if (v.getId() == R.id.groupaButton) {
             i = new Intent(MainActivity.this, GroupaActivity.class);
         } else if (v.getId() == R.id.studentButton) {

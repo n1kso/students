@@ -49,6 +49,9 @@ public class FacultyActivity extends AppCompatActivity {
 
     private void updateFaculties() {
         List<Faculty> faculties = facultyQuery.list();
+//        for (Faculty faculty: faculties) {
+//            faculty.resetGroupas();
+//        }
         facultyAdapter.setFaculties(faculties);
     }
 

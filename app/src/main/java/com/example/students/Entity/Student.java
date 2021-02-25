@@ -18,7 +18,7 @@ public class Student {
     private String surname;
     private String patronymic;
     private Date birthDate;
-    private long groupaId;
+    private Long groupaId;
     @ToOne(joinProperty = "groupaId")
     private Groupa groupa;
     /** Used to resolve relations */
@@ -30,9 +30,9 @@ public class Student {
     @Generated(hash = 113396491)
     private transient Long groupa__resolvedKey;
     
-    @Generated(hash = 413113853)
+    @Generated(hash = 987904711)
     public Student(Long id, String name, String surname, String patronymic, Date birthDate,
-            long groupaId) {
+            Long groupaId) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -78,9 +78,9 @@ public class Student {
         this.groupaId = groupaId;
     }
     /** To-one relationship, resolved on first access. */
-    @Generated(hash = 1807605250)
+    @Generated(hash = 1980003515)
     public Groupa getGroupa() {
-        long __key = this.groupaId;
+        Long __key = this.groupaId;
         if (groupa__resolvedKey == null || !groupa__resolvedKey.equals(__key)) {
             final DaoSession daoSession = this.daoSession;
             if (daoSession == null) {
@@ -96,15 +96,11 @@ public class Student {
         return groupa;
     }
     /** called by internal mechanisms, do not call yourself. */
-    @Generated(hash = 2022908357)
-    public void setGroupa(@NotNull Groupa groupa) {
-        if (groupa == null) {
-            throw new DaoException(
-                    "To-one property 'groupaId' has not-null constraint; cannot set to-one to null");
-        }
+    @Generated(hash = 1984555448)
+    public void setGroupa(Groupa groupa) {
         synchronized (this) {
             this.groupa = groupa;
-            groupaId = groupa.getId();
+            groupaId = groupa == null ? null : groupa.getId();
             groupa__resolvedKey = groupaId;
         }
     }
@@ -146,6 +142,9 @@ public class Student {
     }
     public Long getId() {
         return this.id;
+    }
+    public void setGroupaId(Long groupaId) {
+        this.groupaId = groupaId;
     }
     /** called by internal mechanisms, do not call yourself. */
     @Generated(hash = 1701634981)
