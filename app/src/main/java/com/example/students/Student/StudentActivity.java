@@ -1,11 +1,17 @@
 package com.example.students.Student;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -73,7 +79,10 @@ public class StudentActivity extends AppCompatActivity {
         @Override
         public void onStudentClick(int position) {
             Student student = studentsAdapter.getStudent(position);
-            Long studentId = student.getId();
+            StudentDialogFragment studentDialogFragment = new StudentDialogFragment(student, studentDao);
+            studentDialogFragment.show(getSupportFragmentManager(), "edit");
+//            Long studentId = student.getId();
+
 
 //            studentDao.deleteByKey(studentId);
 //            Log.d("DaoExample", "Deleted note, ID: " + studentId);
@@ -81,7 +90,6 @@ public class StudentActivity extends AppCompatActivity {
             updateStudents();
         }
     };
-
-
-
 }
+
+

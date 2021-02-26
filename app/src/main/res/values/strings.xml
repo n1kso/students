@@ -11,4 +11,7 @@
     <string name="newStudentPatronymic">Введите отчество</string>
     <string name="newStudentBirthDate">Введите дату рождения</string>
     <string name="wrongDateFormat">Неверный формат даты</string>
+    <string name="edit">Изменить</string>
+    <string name="delete">Удалить</string>
+    <string name="editordelete">Изменить или удалить запись?</string>
 </resources>

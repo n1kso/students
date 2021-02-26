@@ -16,8 +16,10 @@ import com.example.students.R;
 
 import org.greenrobot.greendao.query.Query;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.StudentsViewHolder> {
 
@@ -35,8 +37,8 @@ public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.Studen
         public TextView patronymic;
         public TextView birthDate;
         public TextView group;
-        public ImageButton editButton;
-        public ImageButton deleteButton;
+//        public ImageButton editButton;
+//        public ImageButton deleteButton;
 
         public StudentsViewHolder(View itemView, final StudentClickListener clickListener) {
             super(itemView);
@@ -45,8 +47,8 @@ public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.Studen
             patronymic = itemView.findViewById(R.id.textViewStudentPatronymic);
             birthDate = itemView.findViewById(R.id.textViewStudentBirthDate);
             group = itemView.findViewById(R.id.textViewStudentGroup);
-            editButton = itemView.findViewById(R.id.editStudent);
-            deleteButton = itemView.findViewById(R.id.deleteStudent);
+//            editButton = itemView.findViewById(R.id.editStudent);
+//            deleteButton = itemView.findViewById(R.id.deleteStudent);
 
             itemView.setOnClickListener(view -> {
                 if (clickListener != null) {
@@ -74,7 +76,7 @@ public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.Studen
     @Override
     public StudentsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_student_new, parent, false);
+                .inflate(R.layout.item_student, parent, false);
         return new StudentsViewHolder(view, clickListener);
     }
 
@@ -84,7 +86,8 @@ public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.Studen
         holder.name.setText(student.getName());
         holder.familyName.setText(student.getSurname());
         holder.patronymic.setText(student.getPatronymic());
-        holder.birthDate.setText(student.getBirthDate().toString());
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
+        holder.birthDate.setText(format.format(student.getBirthDate()));
         holder.group.setText(student.getGroupa().getCaption());
     }
 

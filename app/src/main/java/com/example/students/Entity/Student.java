@@ -1,16 +1,21 @@
 package com.example.students.Entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 
+import java.io.Serializable;
 import java.util.Date;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.ToOne;
 import org.greenrobot.greendao.DaoException;
 import org.greenrobot.greendao.annotation.NotNull;
+import org.greenrobot.greendao.annotation.Transient;
 
 @Entity
-public class Student {
+public class Student implements Parcelable {
 
     @Id(autoincrement = true)
     private Long id;
@@ -43,7 +48,62 @@ public class Student {
     @Generated(hash = 1556870573)
     public Student() {
     }
-    
+
+    protected Student(Parcel in) {
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readLong();
+        }
+        name = in.readString();
+        surname = in.readString();
+        patronymic = in.readString();
+        long tmpDate = in.readLong();
+        this.birthDate = tmpDate == -1 ? null : new Date(tmpDate);
+        if (in.readByte() == 0) {
+            groupaId = null;
+        } else {
+            groupaId = in.readLong();
+        }
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (id == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(id);
+        }
+        dest.writeString(name);
+        dest.writeString(surname);
+        dest.writeString(patronymic);
+        dest.writeLong(birthDate != null ? birthDate.getTime() : -1);
+        if (groupaId == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(groupaId);
+        }
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Student> CREATOR = new Creator<Student>() {
+        @Override
+        public Student createFromParcel(Parcel in) {
+            return new Student(in);
+        }
+
+        @Override
+        public Student[] newArray(int size) {
+            return new Student[size];
+        }
+    };
+
     public void setId(long id) {
         this.id = id;
     }

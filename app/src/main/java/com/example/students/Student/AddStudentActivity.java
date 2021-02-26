@@ -36,6 +36,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -45,6 +46,7 @@ public class AddStudentActivity extends AppCompatActivity {
     private EditText surname;
     private EditText patronymic;
     private EditText birthDate;
+    private TextView id;
     private Spinner groupaSpinner;
     private List<Groupa> groupas;
     private Button insertStudent;
@@ -67,6 +69,7 @@ public class AddStudentActivity extends AppCompatActivity {
         birthDate = findViewById(R.id.NewStudentBirthDate);
         groupaSpinner = findViewById(R.id.groupaSpinner);
         insertStudent = findViewById(R.id.InsertStudent);
+        id = findViewById(R.id.studentId);
 
         DaoSession daoSession = ((App)getApplication()).getDaoSession();
         studentDao = daoSession.getStudentDao();
@@ -79,7 +82,7 @@ public class AddStudentActivity extends AppCompatActivity {
         MyAddStudentAdapter addStudentAdapter = new MyAddStudentAdapter(this, R.layout.student_spinner_item, groupas);
 
         groupaSpinner.setAdapter(addStudentAdapter);
-        groupaSpinner.setSelection(0);
+//        groupaSpinner.setSelection(0);
 
         handler = new Handler(Looper.getMainLooper());
 
@@ -108,13 +111,39 @@ public class AddStudentActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        Student student = getIntent().getParcelableExtra("student");
+        if (student != null) {
+            id.setText(String.valueOf(student.getId()));
+            name.setText(student.getName());
+            surname.setText(student.getSurname());
+            patronymic.setText(student.getPatronymic());
+            DateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
+            birthDate.setText(format.format(student.getBirthDate().toString()));
+            groupaSpinner.setSelection(findSelectedPosition(student));
+
+        }
+    }
+
+    private int findSelectedPosition(Student student) {
+        int pos = -1;
+        for (Groupa groupa: groupas) {
+            pos++;
+            if (student.getGroupaId() == groupa.getId())
+                return pos;
+        }
+        return pos;
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
 
     }
 
     private class InsertStudent implements Runnable {
-        private Context context;
+        private final Context context;
 
         InsertStudent(Context context) {
             this.context = context;
@@ -122,24 +151,44 @@ public class AddStudentActivity extends AppCompatActivity {
 
         @Override
         public void run() {
-            Student student = new Student();
-            student.setName(name.getText().toString());
-            student.setSurname(surname.getText().toString());
-            student.setPatronymic(patronymic.getText().toString());
-            DateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
-            Date birth;
-            try {
-                birth = format.parse(birthDate.getText().toString());
-                student.setBirthDate(birth);
-                student.setGroupaId(groupas.get(groupaSpinner.getSelectedItemPosition()).getId());
-                studentDao.insert(student);
-                startActivity(new Intent(context, StudentActivity.class));
-            } catch (ParseException e) {
-                e.printStackTrace();
-                Toast.makeText(context, R.string.wrongDateFormat, Toast.LENGTH_LONG).show();
-                startActivity(new Intent(context, AddStudentActivity.class));
-            }
+            if (id.getText().equals("")) {
+                Student student = new Student();
+                student.setName(name.getText().toString());
+                student.setSurname(surname.getText().toString());
+                student.setPatronymic(patronymic.getText().toString());
+                DateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
+                Date birth;
+                try {
+                    birth = format.parse(birthDate.getText().toString());
+                    student.setBirthDate(birth);
+                    student.setGroupaId(groupas.get(groupaSpinner.getSelectedItemPosition()).getId());
+                    studentDao.insert(student);
+                    startActivity(new Intent(context, StudentActivity.class));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    Toast.makeText(context, R.string.wrongDateFormat, Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(context, AddStudentActivity.class));
+                }
+            } else {
+                Student student = studentDao.loadByRowId(Long.parseLong(id.getText().toString()));
+                student.setName(name.getText().toString());
+                student.setSurname(surname.getText().toString());
+                student.setPatronymic(patronymic.getText().toString());
+                DateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
+                Date birth;
+                try {
+                    birth = format.parse(birthDate.getText().toString());
+                    student.setBirthDate(birth);
+                    student.setGroupaId(groupas.get(groupaSpinner.getSelectedItemPosition()).getId());
+                    studentDao.update(student);
+                    startActivity(new Intent(context, StudentActivity.class));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    Toast.makeText(context, R.string.wrongDateFormat, Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(context, AddStudentActivity.class));
+                }
 
+            }
         }
     }
 
