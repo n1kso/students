@@ -25,6 +25,7 @@ public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.Studen
 
     private StudentClickListener clickListener;
     private List<Student> dataset;
+    private List<Student> datasetCopy;
 
     public interface StudentClickListener {
         void onStudentClick(int position);
@@ -61,10 +62,12 @@ public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.Studen
     public StudentsAdapter(StudentClickListener clickListener) {
         this.clickListener = clickListener;
         this.dataset = new ArrayList<>();
+        this.datasetCopy = new ArrayList<>();
     }
 
     public void setStudents(@NonNull List<Student> students) {
         dataset = students;
+        datasetCopy.addAll(dataset);
         notifyDataSetChanged();
     }
 
@@ -94,5 +97,23 @@ public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.Studen
     @Override
     public int getItemCount() {
         return dataset.size();
+    }
+
+    public void filter(String text) {
+        dataset.clear();
+        if(text.isEmpty()){
+            dataset.addAll(datasetCopy);
+        } else{
+            text = text.toLowerCase();
+            for(Student item: datasetCopy){
+                if(item.getName().toLowerCase().contains(text) ||
+                        item.getSurname().toLowerCase().contains(text) ||
+                        item.getPatronymic().toLowerCase().contains(text) ||
+                        item.getGroupa().getCaption().toLowerCase().contains(text)) {
+                    dataset.add(item);
+                }
+            }
+        }
+        notifyDataSetChanged();
     }
 }

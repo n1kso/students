@@ -14,4 +14,5 @@
     <string name="edit">Изменить</string>
     <string name="delete">Удалить</string>
     <string name="editordelete">Изменить или удалить запись?</string>
+    <string name="action_filter">Фильтр</string>
 </resources>

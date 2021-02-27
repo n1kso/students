@@ -1,17 +1,15 @@
 package com.example.students.Student;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SearchView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
+import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,7 +23,7 @@ import org.greenrobot.greendao.query.Query;
 
 import java.util.List;
 
-public class StudentActivity extends AppCompatActivity {
+public class StudentActivity extends AppCompatActivity implements StudentDialogFragment.DeleteStudentDialogListener {
 
     private Button addFacultyButton;
     private StudentDao studentDao;
@@ -90,6 +88,34 @@ public class StudentActivity extends AppCompatActivity {
             updateStudents();
         }
     };
+
+    @Override
+    public void onFinishDeleteDialog(boolean delete) {
+        if (delete)
+            updateStudents();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        final MenuItem searchItem = menu.findItem(R.id.action_search);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                studentsAdapter.filter(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                studentsAdapter.filter(newText);
+                return true;
+            }
+        });
+
+        return true;
+    }
 }
 
 

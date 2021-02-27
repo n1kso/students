@@ -120,7 +120,7 @@ public class AddStudentActivity extends AppCompatActivity {
             surname.setText(student.getSurname());
             patronymic.setText(student.getPatronymic());
             DateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
-            birthDate.setText(format.format(student.getBirthDate().toString()));
+            birthDate.setText(format.format(student.getBirthDate()));
             groupaSpinner.setSelection(findSelectedPosition(student));
 
         }
