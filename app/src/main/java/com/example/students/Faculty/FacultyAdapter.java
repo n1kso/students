@@ -18,6 +18,7 @@ public class FacultyAdapter extends RecyclerView.Adapter<FacultyAdapter.FacultyV
 
     private FacultyClickListener clickListener;
     private List<Faculty> dataset;
+    private List<Faculty> datasetCopy;
 
     public interface FacultyClickListener {
         void onFacultyClick(int position);
@@ -41,10 +42,12 @@ public class FacultyAdapter extends RecyclerView.Adapter<FacultyAdapter.FacultyV
     public FacultyAdapter(FacultyClickListener clickListener){
         this.clickListener = clickListener;
         this.dataset = new ArrayList<>();
+        this.datasetCopy = new ArrayList<>();
     }
 
     public void setFaculties(@NonNull List<Faculty> faculties) {
         dataset = faculties;
+        datasetCopy.addAll(dataset);
         notifyDataSetChanged();
     }
 
@@ -69,5 +72,19 @@ public class FacultyAdapter extends RecyclerView.Adapter<FacultyAdapter.FacultyV
     @Override
     public int getItemCount() {
         return dataset.size();
+    }
+
+    public void filter(String text) {
+        dataset.clear();
+        if (text.isEmpty()) {
+            dataset.addAll(datasetCopy);
+        } else {
+            text = text.toLowerCase();
+            for (Faculty item : datasetCopy) {
+                if (item.getName().toLowerCase().contains(text))
+                    dataset.add(item);
+            }
+        }
+        notifyDataSetChanged();
     }
 }

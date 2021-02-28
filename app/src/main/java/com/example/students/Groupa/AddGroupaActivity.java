@@ -26,19 +26,11 @@ import com.example.students.Entity.Faculty;
 import com.example.students.Entity.FacultyDao;
 import com.example.students.Entity.Groupa;
 import com.example.students.Entity.GroupaDao;
-import com.example.students.Entity.Student;
 import com.example.students.R;
-import com.example.students.Student.AddStudentActivity;
-import com.example.students.Student.StudentActivity;
 
 import org.greenrobot.greendao.query.Query;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class AddGroupaActivity extends AppCompatActivity {
     private EditText caption;
@@ -140,19 +132,23 @@ public class AddGroupaActivity extends AppCompatActivity {
 
         @Override
         public void run() {
-            if (id.getText().equals("")) {
-                Groupa groupa = new Groupa();
-                groupa.setCaption(caption.getText().toString());
-                groupa.setFacultyId(faculties.get(facultySpinner.getSelectedItemPosition()).getId());
-                groupaDao.insert(groupa);
-                startActivity(new Intent(context, GroupaActivity.class));
-            } else {
-                Groupa groupa = groupaDao.loadByRowId(Long.parseLong(id.getText().toString()));
-                groupa.setCaption(caption.getText().toString());
-                groupa.setFacultyId(faculties.get(facultySpinner.getSelectedItemPosition()).getId());
-                groupaDao.update(groupa);
-                startActivity(new Intent(context, GroupaActivity.class));
+            if (isFilled()) {
+                if (id.getText().equals("")) {
+                    Groupa groupa = new Groupa();
+                    groupa.setCaption(caption.getText().toString());
+                    groupa.setFacultyId(faculties.get(facultySpinner.getSelectedItemPosition()).getId());
+                    groupaDao.insert(groupa);
+                    startActivity(new Intent(context, GroupaActivity.class));
+                } else {
+                    Groupa groupa = groupaDao.loadByRowId(Long.parseLong(id.getText().toString()));
+                    groupa.setCaption(caption.getText().toString());
+                    groupa.setFacultyId(faculties.get(facultySpinner.getSelectedItemPosition()).getId());
+                    groupaDao.update(groupa);
+                    startActivity(new Intent(context, GroupaActivity.class));
 
+                }
+            } else {
+                Toast.makeText(context, R.string.fieldsMustBeFilled, Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -186,5 +182,11 @@ public class AddGroupaActivity extends AppCompatActivity {
 
             return item;
         }
+    }
+
+    private boolean isFilled() {
+        if (caption.getText() != null && !caption.getText().toString().equals("")) {
+            return caption.getText().toString().matches("\\s*\\D+\\s*");
+        } else return false;
     }
 }

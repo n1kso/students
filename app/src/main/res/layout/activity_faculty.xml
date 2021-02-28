@@ -11,16 +11,23 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewFaculties"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
         android:scrollbars="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
-
-    <Button
-        android:id="@+id/buttonAddFaculty"
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onAddButtonClick"
-        android:text="@string/add"/>
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/buttonAddFaculty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="@string/add"/>
+
+
+    </RelativeLayout>
+
 
 </LinearLayout>

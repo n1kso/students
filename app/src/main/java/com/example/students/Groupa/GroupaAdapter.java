@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.students.Entity.Groupa;
-import com.example.students.Entity.Student;
 import com.example.students.R;
 
 import java.util.ArrayList;

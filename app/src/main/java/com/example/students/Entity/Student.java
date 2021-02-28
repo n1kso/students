@@ -15,14 +15,19 @@ import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Transient;
 
 @Entity
-public class Student implements Parcelable, IEntity {
+public class Student implements Parcelable {
 
     @Id(autoincrement = true)
     private Long id;
+    @NotNull
     private String name;
+    @NotNull
     private String surname;
+    @NotNull
     private String patronymic;
+    @NotNull
     private Date birthDate;
+    @NotNull
     private Long groupaId;
     @ToOne(joinProperty = "groupaId")
     private Groupa groupa;
@@ -35,9 +40,9 @@ public class Student implements Parcelable, IEntity {
     @Generated(hash = 113396491)
     private transient Long groupa__resolvedKey;
     
-    @Generated(hash = 987904711)
-    public Student(Long id, String name, String surname, String patronymic, Date birthDate,
-            Long groupaId) {
+    @Generated(hash = 249069163)
+    public Student(Long id, @NotNull String name, @NotNull String surname,
+            @NotNull String patronymic, @NotNull Date birthDate, @NotNull Long groupaId) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -156,11 +161,15 @@ public class Student implements Parcelable, IEntity {
         return groupa;
     }
     /** called by internal mechanisms, do not call yourself. */
-    @Generated(hash = 1984555448)
-    public void setGroupa(Groupa groupa) {
+    @Generated(hash = 2022908357)
+    public void setGroupa(@NotNull Groupa groupa) {
+        if (groupa == null) {
+            throw new DaoException(
+                    "To-one property 'groupaId' has not-null constraint; cannot set to-one to null");
+        }
         synchronized (this) {
             this.groupa = groupa;
-            groupaId = groupa == null ? null : groupa.getId();
+            groupaId = groupa.getId();
             groupa__resolvedKey = groupaId;
         }
     }

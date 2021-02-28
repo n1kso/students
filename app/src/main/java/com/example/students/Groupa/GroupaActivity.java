@@ -2,7 +2,6 @@ package com.example.students.Groupa;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,11 +17,7 @@ import com.example.students.App;
 import com.example.students.Entity.DaoSession;
 import com.example.students.Entity.Groupa;
 import com.example.students.Entity.GroupaDao;
-import com.example.students.Entity.Student;
 import com.example.students.R;
-import com.example.students.Student.AddStudentActivity;
-import com.example.students.Student.StudentActivity;
-import com.example.students.Student.StudentDialogFragment;
 
 import org.greenrobot.greendao.query.Query;
 

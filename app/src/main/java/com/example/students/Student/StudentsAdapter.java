@@ -3,18 +3,13 @@ package com.example.students.Student;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.students.Entity.Groupa;
-import com.example.students.Entity.GroupaDao;
 import com.example.students.Entity.Student;
 import com.example.students.R;
-
-import org.greenrobot.greendao.query.Query;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -109,7 +104,8 @@ public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.Studen
                 if(item.getName().toLowerCase().contains(text) ||
                         item.getSurname().toLowerCase().contains(text) ||
                         item.getPatronymic().toLowerCase().contains(text) ||
-                        item.getGroupa().getCaption().toLowerCase().contains(text)) {
+                        item.getGroupa().getCaption().toLowerCase().contains(text) ||
+                        item.getBirthDate().toString().contains(text)) {
                     dataset.add(item);
                 }
             }

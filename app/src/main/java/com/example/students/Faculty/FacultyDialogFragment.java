@@ -1,4 +1,4 @@
-package com.example.students.Student;
+package com.example.students.Faculty;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -6,27 +6,28 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-import com.example.students.Entity.Student;
-import com.example.students.Entity.StudentDao;
+import com.example.students.Entity.Faculty;
+import com.example.students.Entity.FacultyDao;
 import com.example.students.R;
 
-public class StudentDialogFragment extends DialogFragment {
-    private Student student;
-    private StudentDao studentDao;
-    private DeleteStudentDialogListener deleteStudentDialogListener;
+public class FacultyDialogFragment extends DialogFragment {
+    private Faculty faculty;
+    private FacultyDao facultyDao;
+    private FacultyDialogFragment.DeleteFacultyDialogListener deleteFacultyDialogListener;
 
-    public interface DeleteStudentDialogListener {
+    public interface DeleteFacultyDialogListener {
         void onFinishDeleteDialog(boolean delete);
     }
 
-    public StudentDialogFragment(Student student, StudentDao studentDao) {
-        this.student = student;
-        this.studentDao = studentDao;
+    public FacultyDialogFragment(Faculty faculty, FacultyDao facultyDao) {
+        this.faculty = faculty;
+        this.facultyDao = facultyDao;
     }
 
     @NonNull
@@ -38,8 +39,8 @@ public class StudentDialogFragment extends DialogFragment {
                 .setPositiveButton(R.string.edit, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(getContext(), AddStudentActivity.class);
-                        intent.putExtra("student", student);
+                        Intent intent = new Intent(getContext(), AddFacultyActivity.class);
+                        intent.putExtra("faculty", faculty);
                         dismiss();
                         startActivity(intent);
                     }
@@ -47,8 +48,12 @@ public class StudentDialogFragment extends DialogFragment {
                 .setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        studentDao.deleteByKey(student.getId());
-                        deleteStudentDialogListener.onFinishDeleteDialog(true);
+                        if (faculty.getGroupas().size() == 0) {
+                            facultyDao.deleteByKey(faculty.getId());
+                            deleteFacultyDialogListener.onFinishDeleteDialog(true);
+                        } else {
+                            Toast.makeText(getContext(), R.string.cantDelete, Toast.LENGTH_LONG).show();
+                        }
                         dismiss();
                     }
                 });
@@ -59,7 +64,7 @@ public class StudentDialogFragment extends DialogFragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try {
-            deleteStudentDialogListener = (DeleteStudentDialogListener) context;
+            deleteFacultyDialogListener = (FacultyDialogFragment.DeleteFacultyDialogListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString()
                     + " must implement EditNameDialogListener");

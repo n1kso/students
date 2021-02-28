@@ -15,4 +15,7 @@
     <string name="delete">Удалить</string>
     <string name="editordelete">Изменить или удалить запись?</string>
     <string name="action_filter">Фильтр</string>
+    <string name="cantDelete">Не могу удалить объект, так как имееются ссылки на объект</string>
+    <string name="newFacultyName">Введите название факультета</string>
+    <string name="fieldsMustBeFilled">Все поля должны быть заполнены</string>
 </resources>

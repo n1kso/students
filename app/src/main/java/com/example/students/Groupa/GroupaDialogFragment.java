@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,11 +14,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.students.Entity.Groupa;
 import com.example.students.Entity.GroupaDao;
-import com.example.students.Entity.Student;
-import com.example.students.Entity.StudentDao;
 import com.example.students.R;
-import com.example.students.Student.AddStudentActivity;
-import com.example.students.Student.StudentDialogFragment;
 
 public class GroupaDialogFragment extends DialogFragment {
     private Groupa groupa;
@@ -51,10 +48,12 @@ public class GroupaDialogFragment extends DialogFragment {
                 .setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        groupaDao.deleteByKey(groupa.getId());
-//                        Intent intent = new Intent(getContext(), StudentActivity.class);
-//                        startActivity(intent);
-                        deleteGroupaDialogListener.onFinishDeleteDialog(true);
+                        if (groupa.getStudents().size() == 0) {
+                            groupaDao.deleteByKey(groupa.getId());
+                            deleteGroupaDialogListener.onFinishDeleteDialog(true);
+                        } else {
+                            Toast.makeText(getContext(), R.string.cantDelete, Toast.LENGTH_LONG).show();
+                        }
                         dismiss();
                     }
                 });

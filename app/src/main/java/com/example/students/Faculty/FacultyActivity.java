@@ -1,11 +1,15 @@
 package com.example.students.Faculty;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,7 +23,7 @@ import org.greenrobot.greendao.query.Query;
 
 import java.util.List;
 
-public class FacultyActivity extends AppCompatActivity {
+public class FacultyActivity extends AppCompatActivity implements FacultyDialogFragment.DeleteFacultyDialogListener {
 
     private View addFacultyButton;
     private FacultyDao facultyDao;
@@ -35,8 +39,6 @@ public class FacultyActivity extends AppCompatActivity {
 
         DaoSession daoSession = ((App)getApplication()).getDaoSession();
         facultyDao = daoSession.getFacultyDao();
-//        facultyDao.detachAll();
-
         facultyQuery = facultyDao.queryBuilder().build();
         updateFaculties();
     }
@@ -49,9 +51,6 @@ public class FacultyActivity extends AppCompatActivity {
 
     private void updateFaculties() {
         List<Faculty> faculties = facultyQuery.list();
-//        for (Faculty faculty: faculties) {
-//            faculty.resetGroupas();
-//        }
         facultyAdapter.setFaculties(faculties);
     }
 
@@ -64,7 +63,12 @@ public class FacultyActivity extends AppCompatActivity {
         recyclerView.setAdapter(facultyAdapter);
 
         addFacultyButton = findViewById(R.id.buttonAddFaculty);
-        addFacultyButton.setEnabled(false);
+        addFacultyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(FacultyActivity.this, AddFacultyActivity.class));
+            }
+        });
 
 
     }
@@ -73,16 +77,39 @@ public class FacultyActivity extends AppCompatActivity {
         @Override
         public void onFacultyClick(int position) {
             Faculty faculty = facultyAdapter.getFaculty(position);
-            Long facultyId = faculty.getId();
-
-            facultyDao.deleteByKey(facultyId);
-            Log.d("DaoExample", "Deleted note, ID: " + facultyId);
+            FacultyDialogFragment facultyDialogFragment = new FacultyDialogFragment(faculty, facultyDao);
+            facultyDialogFragment.show(getSupportFragmentManager(), "edit");
 
             updateFaculties();
         }
     };
 
-    public void onAddButtonClick(View view) {
-        
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        final MenuItem searchItem = menu.findItem(R.id.action_search);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                facultyAdapter.filter(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                facultyAdapter.filter(newText);
+                return true;
+            }
+        });
+
+        return true;
+    }
+
+    @Override
+    public void onFinishDeleteDialog(boolean delete) {
+        if (delete)
+            updateFaculties();
     }
 }

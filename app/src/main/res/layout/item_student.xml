@@ -9,37 +9,37 @@
 
     <TextView
         android:id="@+id/textViewStudentName"
-        android:layout_width="90dp"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
+        android:textSize="12sp"
         tools:text="Имя" />
 
     <TextView
         android:id="@+id/textViewStudentFamilyName"
-        android:layout_width="90dp"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
+        android:textSize="12sp"
         tools:text="Фамилия" />
 
     <TextView
         android:id="@+id/textViewStudentPatronymic"
-        android:layout_width="90dp"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
+        android:textSize="12sp"
         tools:text="Отчество" />
 
     <TextView
         android:id="@+id/textViewStudentBirthDate"
-        android:layout_width="80dp"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
+        android:textSize="12sp"
         tools:text="Дата" />
 
     <TextView
         android:id="@+id/textViewStudentGroup"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
+        android:textSize="12sp"
         tools:text="Группа" />
 
 </LinearLayout>

@@ -14,11 +14,13 @@ import org.greenrobot.greendao.annotation.ToOne;
 import org.greenrobot.greendao.annotation.NotNull;
 
 @Entity
-public class Groupa implements Parcelable, IEntity {
+public class Groupa implements Parcelable {
 
     @Id(autoincrement = true)
     private Long id;
+    @NotNull
     private String caption;
+    @NotNull
     private Long facultyId;
 
     @ToMany(referencedJoinProperty = "groupaId")
@@ -33,8 +35,8 @@ public class Groupa implements Parcelable, IEntity {
     @Generated(hash = 2047761952)
     private transient GroupaDao myDao;
 
-    @Generated(hash = 1095525552)
-    public Groupa(Long id, String caption, Long facultyId) {
+    @Generated(hash = 1574542061)
+    public Groupa(Long id, @NotNull String caption, @NotNull Long facultyId) {
         this.id = id;
         this.caption = caption;
         this.facultyId = facultyId;
@@ -141,11 +143,15 @@ public class Groupa implements Parcelable, IEntity {
     }
 
     /** called by internal mechanisms, do not call yourself. */
-    @Generated(hash = 2002580468)
-    public void setFaculty(Faculty faculty) {
+    @Generated(hash = 586566501)
+    public void setFaculty(@NotNull Faculty faculty) {
+        if (faculty == null) {
+            throw new DaoException(
+                    "To-one property 'facultyId' has not-null constraint; cannot set to-one to null");
+        }
         synchronized (this) {
             this.faculty = faculty;
-            facultyId = faculty == null ? null : faculty.getId();
+            facultyId = faculty.getId();
             faculty__resolvedKey = facultyId;
         }
     }

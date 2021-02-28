@@ -1,17 +1,22 @@
 package com.example.students.Entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import org.greenrobot.greendao.DaoException;
 import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.ToMany;
 
 import java.util.List;
-import org.greenrobot.greendao.annotation.Generated;
-import org.greenrobot.greendao.DaoException;
 
 @Entity
-public class Faculty implements IEntity {
+public class Faculty implements Parcelable {
     @Id(autoincrement = true)
     private Long id;
+    @NotNull
     private String name;
 
     @ToMany(referencedJoinProperty = "facultyId")
@@ -23,8 +28,8 @@ public class Faculty implements IEntity {
     @Generated(hash = 1268625480)
     private transient FacultyDao myDao;
 
-    @Generated(hash = 355737088)
-    public Faculty(Long id, String name) {
+    @Generated(hash = 77436864)
+    public Faculty(Long id, @NotNull String name) {
         this.id = id;
         this.name = name;
     }
@@ -32,6 +37,45 @@ public class Faculty implements IEntity {
     @Generated(hash = 2112390923)
     public Faculty() {
     }
+
+    protected Faculty(Parcel in) {
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readLong();
+        }
+        name = in.readString();
+        groupas = in.createTypedArrayList(Groupa.CREATOR);
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (id == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(id);
+        }
+        dest.writeString(name);
+        dest.writeTypedList(groupas);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Faculty> CREATOR = new Creator<Faculty>() {
+        @Override
+        public Faculty createFromParcel(Parcel in) {
+            return new Faculty(in);
+        }
+
+        @Override
+        public Faculty[] newArray(int size) {
+            return new Faculty[size];
+        }
+    };
 
     public Long getId() {
         return this.id;
