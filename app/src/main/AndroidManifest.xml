@@ -6,7 +6,7 @@
         android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Университет"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Students">
@@ -18,17 +18,19 @@
             </intent-filter>
         </activity>
         <activity android:name=".Student.StudentActivity"
-            android:label="StudentActivity">
+            android:label="Студенты">
         </activity>
         <activity android:name=".Faculty.FacultyActivity"
-            android:label="FacultyActivity">
+            android:label="Факультеты">
         </activity>
         <activity android:name=".Groupa.GroupaActivity"
-            android:label="GroupaActivity">
+            android:label="Группы">
         </activity>
         <activity android:name=".Student.AddStudentActivity"
-            android:label="AddStudentActivity">
+            android:label="Студент">
         </activity>
+        <activity android:name=".Groupa.AddGroupaActivity"
+            android:label="Группа"/>
     </application>
 
 </manifest>

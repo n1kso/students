@@ -9,7 +9,7 @@ import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.DaoException;
 
 @Entity
-public class Faculty {
+public class Faculty implements IEntity {
     @Id(autoincrement = true)
     private Long id;
     private String name;

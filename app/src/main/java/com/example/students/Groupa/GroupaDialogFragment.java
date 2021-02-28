@@ -1,4 +1,4 @@
-package com.example.students.Student;
+package com.example.students.Groupa;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -11,22 +11,26 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.students.Entity.Groupa;
+import com.example.students.Entity.GroupaDao;
 import com.example.students.Entity.Student;
 import com.example.students.Entity.StudentDao;
 import com.example.students.R;
+import com.example.students.Student.AddStudentActivity;
+import com.example.students.Student.StudentDialogFragment;
 
-public class StudentDialogFragment extends DialogFragment {
-    private Student student;
-    private StudentDao studentDao;
-    private DeleteStudentDialogListener deleteStudentDialogListener;
+public class GroupaDialogFragment extends DialogFragment {
+    private Groupa groupa;
+    private GroupaDao groupaDao;
+    private GroupaDialogFragment.DeleteGroupaDialogListener deleteGroupaDialogListener;
 
-    public interface DeleteStudentDialogListener {
+    public interface DeleteGroupaDialogListener {
         void onFinishDeleteDialog(boolean delete);
     }
 
-    public StudentDialogFragment(Student student, StudentDao studentDao) {
-        this.student = student;
-        this.studentDao = studentDao;
+    public GroupaDialogFragment(Groupa groupa, GroupaDao groupaDao) {
+        this.groupa = groupa;
+        this.groupaDao = groupaDao;
     }
 
     @NonNull
@@ -38,8 +42,8 @@ public class StudentDialogFragment extends DialogFragment {
                 .setPositiveButton(R.string.edit, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(getContext(), AddStudentActivity.class);
-                        intent.putExtra("student", student);
+                        Intent intent = new Intent(getContext(), AddGroupaActivity.class);
+                        intent.putExtra("groupa", groupa);
                         dismiss();
                         startActivity(intent);
                     }
@@ -47,10 +51,10 @@ public class StudentDialogFragment extends DialogFragment {
                 .setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        studentDao.deleteByKey(student.getId());
+                        groupaDao.deleteByKey(groupa.getId());
 //                        Intent intent = new Intent(getContext(), StudentActivity.class);
 //                        startActivity(intent);
-                        deleteStudentDialogListener.onFinishDeleteDialog(true);
+                        deleteGroupaDialogListener.onFinishDeleteDialog(true);
                         dismiss();
                     }
                 });
@@ -61,7 +65,7 @@ public class StudentDialogFragment extends DialogFragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try {
-            deleteStudentDialogListener = (DeleteStudentDialogListener) context;
+            deleteGroupaDialogListener = (GroupaDialogFragment.DeleteGroupaDialogListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString()
                     + " must implement EditNameDialogListener");

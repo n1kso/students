@@ -1,5 +1,8 @@
 package com.example.students.Entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.ToMany;
@@ -11,7 +14,7 @@ import org.greenrobot.greendao.annotation.ToOne;
 import org.greenrobot.greendao.annotation.NotNull;
 
 @Entity
-public class Groupa {
+public class Groupa implements Parcelable, IEntity {
 
     @Id(autoincrement = true)
     private Long id;
@@ -40,6 +43,56 @@ public class Groupa {
     @Generated(hash = 951378057)
     public Groupa() {
     }
+
+    protected Groupa(Parcel in) {
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readLong();
+        }
+        caption = in.readString();
+        if (in.readByte() == 0) {
+            facultyId = null;
+        } else {
+            facultyId = in.readLong();
+        }
+        students = in.createTypedArrayList(Student.CREATOR);
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (id == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(id);
+        }
+        dest.writeString(caption);
+        if (facultyId == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(facultyId);
+        }
+        dest.writeTypedList(students);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Groupa> CREATOR = new Creator<Groupa>() {
+        @Override
+        public Groupa createFromParcel(Parcel in) {
+            return new Groupa(in);
+        }
+
+        @Override
+        public Groupa[] newArray(int size) {
+            return new Groupa[size];
+        }
+    };
 
     public Long getId() {
         return this.id;

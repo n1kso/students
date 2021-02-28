@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/newGroupaCaption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/newStudentName"
+        android:inputType="text"
+        android:autofillHints="username" />
+    <Spinner
+        android:id="@+id/facultySpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/insertGroupa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add"
+        />
+
+    <TextView
+        android:id="@+id/groupaId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:enabled="false"/>
+
+
+</LinearLayout>

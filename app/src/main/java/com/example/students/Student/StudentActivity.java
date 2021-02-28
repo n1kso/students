@@ -25,7 +25,7 @@ import java.util.List;
 
 public class StudentActivity extends AppCompatActivity implements StudentDialogFragment.DeleteStudentDialogListener {
 
-    private Button addFacultyButton;
+    private Button addStudentButton;
     private StudentDao studentDao;
     private Query<Student> studentQuery;
     private StudentsAdapter studentsAdapter;
@@ -34,9 +34,7 @@ public class StudentActivity extends AppCompatActivity implements StudentDialogF
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
-
         setUpViews();
-
         DaoSession daoSession = ((App)getApplication()).getDaoSession();
         studentDao = daoSession.getStudentDao();
         studentQuery = studentDao.queryBuilder().build();
@@ -62,8 +60,8 @@ public class StudentActivity extends AppCompatActivity implements StudentDialogF
         studentsAdapter = new StudentsAdapter(studentClickListener);
         recyclerView.setAdapter(studentsAdapter);
 
-        addFacultyButton = findViewById(R.id.buttonAddStudent);
-        addFacultyButton.setOnClickListener(new View.OnClickListener() {
+        addStudentButton = findViewById(R.id.buttonAddStudent);
+        addStudentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(StudentActivity.this, AddStudentActivity.class));
@@ -79,12 +77,6 @@ public class StudentActivity extends AppCompatActivity implements StudentDialogF
             Student student = studentsAdapter.getStudent(position);
             StudentDialogFragment studentDialogFragment = new StudentDialogFragment(student, studentDao);
             studentDialogFragment.show(getSupportFragmentManager(), "edit");
-//            Long studentId = student.getId();
-
-
-//            studentDao.deleteByKey(studentId);
-//            Log.d("DaoExample", "Deleted note, ID: " + studentId);
-
             updateStudents();
         }
     };

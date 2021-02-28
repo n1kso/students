@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -27,7 +26,6 @@ import com.example.students.Entity.Groupa;
 import com.example.students.Entity.GroupaDao;
 import com.example.students.Entity.Student;
 import com.example.students.Entity.StudentDao;
-import com.example.students.MainActivity;
 import com.example.students.R;
 
 import org.greenrobot.greendao.query.Query;
@@ -36,7 +34,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -63,12 +60,12 @@ public class AddStudentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_student);
 
-        name = findViewById(R.id.NewStudentName);
-        surname = findViewById(R.id.NewStudentSurname);
-        patronymic = findViewById(R.id.NewStudentPatronymic);
-        birthDate = findViewById(R.id.NewStudentBirthDate);
+        name = findViewById(R.id.newStudentName);
+        surname = findViewById(R.id.newStudentSurname);
+        patronymic = findViewById(R.id.newStudentPatronymic);
+        birthDate = findViewById(R.id.newStudentBirthDate);
         groupaSpinner = findViewById(R.id.groupaSpinner);
-        insertStudent = findViewById(R.id.InsertStudent);
+        insertStudent = findViewById(R.id.insertStudent);
         id = findViewById(R.id.studentId);
 
         DaoSession daoSession = ((App)getApplication()).getDaoSession();
@@ -79,7 +76,7 @@ public class AddStudentActivity extends AppCompatActivity {
         groupaQuery = groupaDao.queryBuilder().build();
         groupas = groupaQuery.list();
 
-        MyAddStudentAdapter addStudentAdapter = new MyAddStudentAdapter(this, R.layout.student_spinner_item, groupas);
+        MyAddStudentAdapter addStudentAdapter = new MyAddStudentAdapter(this, R.layout.groupa_spinner_item, groupas);
 
         groupaSpinner.setAdapter(addStudentAdapter);
 //        groupaSpinner.setSelection(0);
@@ -213,7 +210,7 @@ public class AddStudentActivity extends AppCompatActivity {
                                   ViewGroup parent) {
 
             LayoutInflater inflater = getLayoutInflater();
-            View item = inflater.inflate(R.layout.student_spinner_item, parent, false);
+            View item = inflater.inflate(R.layout.groupa_spinner_item, parent, false);
             TextView id = item.findViewById(R.id.groupaId);
             TextView caption = item.findViewById(R.id.groupaName);
             id.setText(String.valueOf(groupas.get(position).getId()));

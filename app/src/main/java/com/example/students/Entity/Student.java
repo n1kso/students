@@ -15,7 +15,7 @@ import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Transient;
 
 @Entity
-public class Student implements Parcelable {
+public class Student implements Parcelable, IEntity {
 
     @Id(autoincrement = true)
     private Long id;

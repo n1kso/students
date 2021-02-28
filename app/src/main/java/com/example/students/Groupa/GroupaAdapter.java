@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.students.Entity.Groupa;
+import com.example.students.Entity.Student;
 import com.example.students.R;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import java.util.List;
 public class GroupaAdapter extends RecyclerView.Adapter<GroupaAdapter.GroupaViewHolder> {
     private GroupaClickListener clickListener;
     private List<Groupa> dataset;
+    private List<Groupa> datasetCopy;
 
     public interface GroupaClickListener {
         void onGroupaClick(int position);
@@ -43,10 +45,12 @@ public class GroupaAdapter extends RecyclerView.Adapter<GroupaAdapter.GroupaView
     public GroupaAdapter(GroupaAdapter.GroupaClickListener clickListener) {
         this.clickListener = clickListener;
         this.dataset = new ArrayList<>();
+        this.datasetCopy = new ArrayList<>();
     }
 
     public void setGroupas(@NonNull List<Groupa> groupas) {
         dataset = groupas;
+        datasetCopy.addAll(dataset);
         notifyDataSetChanged();
     }
 
@@ -72,5 +76,19 @@ public class GroupaAdapter extends RecyclerView.Adapter<GroupaAdapter.GroupaView
     @Override
     public int getItemCount() {
         return dataset.size();
+    }
+
+    public void filter(String text) {
+        dataset.clear();
+        if (text.isEmpty()) {
+            dataset.addAll(datasetCopy);
+        } else {
+            text = text.toLowerCase();
+            for (Groupa item : datasetCopy) {
+                if (item.getCaption().toLowerCase().contains(text))
+                    dataset.add(item);
+            }
+        }
+        notifyDataSetChanged();
     }
 }
