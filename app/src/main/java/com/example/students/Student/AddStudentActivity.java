@@ -198,9 +198,9 @@ public class AddStudentActivity extends AppCompatActivity {
                 surname.getText() != null && !surname.getText().toString().equals("") &&
                 patronymic.getText() != null && !patronymic.getText().toString().equals("") &&
                 birthDate.getText() != null && !birthDate.getText().toString().equals("")) {
-            return name.getText().toString().matches("\\s*\\D+\\s*") &&
-                    surname.getText().toString().matches("\\s*\\D+\\s*") &&
-                    patronymic.getText().toString().matches("\\s*\\D+\\s*") &&
+            return name.getText().toString().matches("^[^\\s*]\\D+\\s*") &&
+                    surname.getText().toString().matches("^[^\\s*]\\D+\\s*") &&
+                    patronymic.getText().toString().matches("^[^\\s*]\\D+\\s*") &&
                     birthDate.getText().toString().matches("\\d\\d.\\d\\d\\.\\d\\d\\d\\d");
         } else return false;
     }

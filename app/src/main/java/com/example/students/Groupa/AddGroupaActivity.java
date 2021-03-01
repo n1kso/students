@@ -186,7 +186,7 @@ public class AddGroupaActivity extends AppCompatActivity {
 
     private boolean isFilled() {
         if (caption.getText() != null && !caption.getText().toString().equals("")) {
-            return caption.getText().toString().matches("\\s*\\D+\\s*");
+            return caption.getText().toString().matches("^[^\\s*]\\D+\\s*");
         } else return false;
     }
 }

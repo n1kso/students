@@ -104,7 +104,7 @@ public class AddFacultyActivity extends AppCompatActivity {
 
     private boolean isFilled() {
         if (name.getText() != null && !name.getText().toString().equals("")) {
-            return name.getText().toString().matches("\\s*\\D+\\s*");
+            return name.getText().toString().matches("^[^\\s*]\\D+\\s*");
         } else return false;
     }
 
